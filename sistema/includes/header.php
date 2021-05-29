@@ -141,13 +141,12 @@ if ($result_data > 0) {
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClientes" aria-expanded="true" aria-controls="collapseUtilities">
 						<i class="fas fa-users"></i>
-						<span>Clientes</span>
+						<span>Registro de Supervisiones</span>
 						<i class="fas fa-angle-down fa-lg float-right"></i>
 					</a>
 					<div id="collapseClientes" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="registro_cliente.php">Nuevo Clientes</a>
-							<a class="collapse-item" href="lista_cliente.php">Clientes</a>
+							<a class="collapse-item" href="registro_cliente.php">Nueva Supervisión</a>
 						</div>
 					</div>
 				</li>
