@@ -1,6 +1,6 @@
 <?php
 
-    $host = "localhost";
+    $host = "localhost:3310";
     $user = "root";
     $clave = "";
     $bd = "sis_venta";

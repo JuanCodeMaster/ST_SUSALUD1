@@ -8,19 +8,11 @@ if (!empty($_POST)) {
                         Todo los campos son obligatorios
                     </div>';
     } else {
-<<<<<<< HEAD
-        $id = $_POST['id'];
-        $año = $_POST['año'];
-        $etapa_del_año = $_POST['etapa_del_año'];
-        $avance = $_POST['avance'];
-        $estado = $_SESSION['estado'];
+
+
 
         $result = 0;
-        if (is_numeric($id) and $id != 0) {
-            $query = mysqli_query($conexion, "SELECT * FROM cliente where id = '$id'");
-            $result = mysqli_fetch_array($query);
-        }
-=======
+
         $proveedor = $_POST['proveedor'];
         $contacto = $_POST['contacto'];
         $telefono = $_POST['telefono'];
@@ -34,7 +26,7 @@ if (!empty($_POST)) {
         $query = mysqli_query($conexion, "SELECT * FROM proveedor where contacto = '$contacto'");
         $result = mysqli_fetch_array($query);
 
->>>>>>> 481afb0eeb9ca0542301cae91c3625376d91be0e
+
         if ($result > 0) {
             $alert = '<div class="alert alert-danger" role="alert">
                         El Ruc ya esta registrado
@@ -48,7 +40,7 @@ if (!empty($_POST)) {
                         Supervisión Registrado
                     </div>';
         } else {
-<<<<<<< HEAD
+
             $query_insert = mysqli_query($conexion, "INSERT INTO cliente(id,año,etapa_del_año,avance,estado) values ('$id', '$año', '$etapa_del_año', '$avance', '$estado')");
             if ($query_insert) {
                 $alert = '<div class="alert alert-primary" role="alert">
@@ -59,12 +51,12 @@ if (!empty($_POST)) {
                                     Error al Guardar
                             </div>';
             }
-=======
+
             $alert = '<div class="alert alert-danger" role="alert">
                        Error al registrar supervisón
                     </div>';
         }
->>>>>>> 481afb0eeb9ca0542301cae91c3625376d91be0e
+
         }
     }
 }
@@ -80,33 +72,9 @@ mysqli_close($conexion);
                 Registro de Supervisión
             </div>
             <div class="card">
-<<<<<<< HEAD
-                <div class="card-header bg-primary">
-                    Nueva Autoevaluación
-                </div>
-                <div class="card-body">
-                    <form action="" method="post" autocomplete="off">
-                        <?php echo isset($alert) ? $alert : ''; ?>
-                        <div class="form-group">
-                            <label for="dni">año</label>
-                            <input type="number" placeholder="Ingrese el año" name="dni" id="dni" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="nombre">etapa_del_año</label>
-                            <input type="text" placeholder="Ingrese etapa del año" name="nombre" id="nombre" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono">avance</label>
-                            <input type="number" placeholder="Ingrese avance" name="telefono" id="telefono" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="direccion">estado</label>
-                            <input type="text" placeholder="Ingrese estado" name="direccion" id="direccion" class="form-control">
-                        </div>
-                        <input type="submit" value="Guardar Cliente" class="btn btn-primary">
-                    </form>
-                </div>
-=======
+
+               
+
                 <form action="" autocomplete="off" method="post" class="card-body p-2">
                     <?php echo isset($alert) ? $alert : ''; ?>
                     <div class="form-group">
@@ -144,7 +112,6 @@ mysqli_close($conexion);
                     <input type="submit" value="Guardar Supervisión" class="btn btn-primary">
                     <a href="lista_proveedor.php" class="btn btn-danger">Regresar</a>
                 </form>
->>>>>>> 481afb0eeb9ca0542301cae91c3625376d91be0e
             </div>
         </div>
     </div>
