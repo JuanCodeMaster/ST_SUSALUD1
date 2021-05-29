@@ -1,95 +1,82 @@
-<?php
-include_once "includes/header.php";
+<?php include_once "includes/header.php";
 include "../conexion.php";
 if (!empty($_POST)) {
     $alert = "";
-    if (empty($_POST['proveedor']) || empty($_POST['contacto']) || empty($_POST['telefono']) || empty($_POST['direccion']) || empty($_POST['modalidad']) || empty($_POST['intervencion']) || empty($_POST['avance']) || empty($_POST['estado'])) {
+    if (empty($_POST['nombre']) || empty($_POST['telefono']) || empty($_POST['direccion'])) {
         $alert = '<div class="alert alert-danger" role="alert">
-                        Todo los campos son obligatorios
-                    </div>';
+                                    Todo los campos son obligatorio
+                                </div>';
     } else {
-        $proveedor = $_POST['proveedor'];
-        $contacto = $_POST['contacto'];
+        $dni = $_POST['dni'];
+        $nombre = $_POST['nombre'];
         $telefono = $_POST['telefono'];
-        $Direccion = $_POST['direccion'];
+        $direccion = $_POST['direccion'];
         $usuario_id = $_SESSION['idUser'];
-        $modalidad = $_POST['modalidad'];
-        $intervencion = $_POST['intervencion'];
-        $avance = $_POST['avance'];
-        $estado = $_POST['estado'];
 
-        $query = mysqli_query($conexion, "SELECT * FROM proveedor where contacto = '$contacto'");
-        $result = mysqli_fetch_array($query);
-
+        $result = 0;
+        if (is_numeric($dni) and $dni != 0) {
+            $query = mysqli_query($conexion, "SELECT * FROM cliente where dni = '$dni'");
+            $result = mysqli_fetch_array($query);
+        }
         if ($result > 0) {
             $alert = '<div class="alert alert-danger" role="alert">
-                        El Ruc ya esta registrado
-                    </div>';
-        }else{
-
-
-        $query_insert = mysqli_query($conexion, "INSERT INTO proveedor(proveedor,contacto,telefono,direccion,usuario_id,modalidad,intervencion,avance,estado) values ('$proveedor', '$contacto', '$telefono', '$Direccion','$usuario_id','$modalidad','$intervencion','$avance','$estado')");
-        if ($query_insert) {
-            $alert = '<div class="alert alert-primary" role="alert">
-                        Supervisión Registrado
-                    </div>';
+                                    El dni ya existe
+                                </div>';
         } else {
-            $alert = '<div class="alert alert-danger" role="alert">
-                       Error al registrar supervisón
-                    </div>';
-        }
+            $query_insert = mysqli_query($conexion, "INSERT INTO cliente(dni,nombre,telefono,direccion, usuario_id) values ('$dni', '$nombre', '$telefono', '$direccion', '$usuario_id')");
+            if ($query_insert) {
+                $alert = '<div class="alert alert-primary" role="alert">
+                                    Cliente Registrado
+                                </div>';
+            } else {
+                $alert = '<div class="alert alert-danger" role="alert">
+                                    Error al Guardar
+                            </div>';
+            }
         }
     }
+    mysqli_close($conexion);
 }
-mysqli_close($conexion);
 ?>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Panel de Administración</h1>
+        <a href="lista_cliente.php" class="btn btn-primary">Regresar</a>
+    </div>
+
     <!-- Content Row -->
     <div class="row">
         <div class="col-lg-6 m-auto">
-            <div class="card-header bg-primary text-white">
-                Registro de Supervisión
-            </div>
             <div class="card">
-                <form action="" autocomplete="off" method="post" class="card-body p-2">
-                    <?php echo isset($alert) ? $alert : ''; ?>
-                    <div class="form-group">
-                        <label for="nombre">PERIODO</label>
-                        <input type="text" placeholder="Ingrese periodo" name="proveedor" id="nombre" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="contacto">AÑO</label>
-                        <input type="text" placeholder="Ingrese el año" name="contacto" id="contacto" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="telefono">ENTIDAD</label>
-                        <input type="text" placeholder="Ingrese la entidad" name="telefono" id="telefono" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="direccion">TIPO DE SUPERVISIÓN</label>
-                        <input type="text" placeholder="Ingrese el tipo de supervisión" name="direccion" id="direcion" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="modalidad">MODALIDAD</label>
-                        <input type="text" placeholder="Ingrese la modalidad" name="modalidad" id="direcion" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="intervencion">TIPO DE INTERVENCIÓN</label>
-                        <input type="text" placeholder="Ingrese el tipo de intervención" name="intervencion" id="direcion" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="avance">AVANCE</label>
-                        <input type="text" placeholder="Ingrese el avance" name="avance" id="direcion" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="estado">ESTADO</label>
-                        <input type="text" placeholder="Ingrese el estado" name="estado" id="direcion" class="form-control">
-                    </div>
-                    <input type="submit" value="Guardar Supervisión" class="btn btn-primary">
-                    <a href="lista_proveedor.php" class="btn btn-danger">Regresar</a>
-                </form>
+                <div class="card-header bg-primary">
+                    Nuevo Cliente
+                </div>
+                <div class="card-body">
+                    <form action="" method="post" autocomplete="off">
+                        <?php echo isset($alert) ? $alert : ''; ?>
+                        <div class="form-group">
+                            <label for="dni">Dni</label>
+                            <input type="number" placeholder="Ingrese dni" name="dni" id="dni" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" placeholder="Ingrese Nombre" name="nombre" id="nombre" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="number" placeholder="Ingrese Teléfono" name="telefono" id="telefono" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <input type="text" placeholder="Ingrese Direccion" name="direccion" id="direccion" class="form-control">
+                        </div>
+                        <input type="submit" value="Guardar Cliente" class="btn btn-primary">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
