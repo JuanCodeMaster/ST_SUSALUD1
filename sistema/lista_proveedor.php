@@ -52,9 +52,9 @@
 									<td><?php echo $data['telefono']; ?></td>
 									<td><?php echo $data['direccion']; ?></td>
 									<td><?php echo $data['modalidad']; ?></td>
-									<td><?php echo $data['']; ?></td>
-									<td><?php echo $data['direccion']; ?></td>
-									<td><?php echo $data['direccion']; ?></td>
+									<td><?php echo $data['intervencion']; ?></td>
+									<td><?php echo $data['avance']; ?></td>
+									<td><?php echo $data['estado']; ?></td>
 									<?php if ($_SESSION['rol'] == 1) { ?>
 									<td>
 										<a href="editar_proveedor.php?id=<?php echo $data['codproveedor']; ?>" class="btn btn-success"><i class='fas fa-edit'></i> Editar</a>
