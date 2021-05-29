@@ -256,6 +256,24 @@ CREATE TABLE `producto` (
   `existencia` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+DROP TABLE IF EXISTS producto;
+CREATE TABLE `producto` (
+	`codproducto` INT(10) NOT NULL AUTO_INCREMENT,
+	`evaluador` VARCHAR(50) NOT NULL DEFAULT '0' COLLATE 'utf8_spanish_ci',
+	`ano_periodo` VARCHAR(200) NOT NULL COLLATE 'utf8_spanish_ci',
+	`macroproceso` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8_spanish_ci',
+	`proceso` VARCHAR(50) NOT NULL DEFAULT '0' COLLATE 'utf8_spanish_ci',
+	`subproceso` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8_spanish_ci',
+	`verificador` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8_spanish_ci',
+	`tecnico` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8_spanish_ci',
+	`fuente` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8_spanish_ci',
+	`criterios` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8_spanish_ci',
+	PRIMARY KEY (`codproducto`) USING BTREE
+)
+COLLATE='utf8_spanish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=5
+;
 
 --
 -- Volcado de datos para la tabla `producto`
