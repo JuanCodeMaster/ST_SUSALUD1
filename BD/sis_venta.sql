@@ -272,7 +272,7 @@ INSERT INTO `producto` (`codproducto`, `codigo`, `descripcion`, `proveedor`, `pr
 --
 -- Estructura de tabla para la tabla `proveedor`
 --
-
+drop table if exists proveedor; 
 CREATE TABLE `proveedor` (
 	`codproveedor` INT(10) NOT NULL AUTO_INCREMENT,
 	`proveedor` VARCHAR(100) NOT NULL COLLATE 'utf8_spanish_ci',
