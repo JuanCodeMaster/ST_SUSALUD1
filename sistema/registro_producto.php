@@ -1,28 +1,33 @@
- <?php include_once "includes/header.php";
+<?php include_once "includes/header.php";
   include "../conexion.php";
   if (!empty($_POST)) {
     $alert = "";
-    if (empty($_POST['proveedor']) || empty($_POST['producto']) || empty($_POST['precio']) || $_POST['precio'] <  0 || empty($_POST['cantidad'] || $_POST['cantidad'] <  0)) {
+    if (empty($_POST['evaluador']) || empty($_POST['ano_periodo']) || empty($_POST['macroproceso']) || empty($_POST['proceso']) || empty($_POST['verificador']) || empty($_POST['subproceso']) || empty($_POST['tecnico']) || empty($_POST['fuente'])|| empty($_POST['criterios'])) {
       $alert = '<div class="alert alert-danger" role="alert">
                 Todo los campos son obligatorios
               </div>';
+      echo $alert;
     } else {
-      $codigo = $_POST['codigo'];
-      $proveedor = $_POST['proveedor'];
-      $producto = $_POST['producto'];
-      $precio = $_POST['precio'];
-      $cantidad = $_POST['cantidad'];
-      $usuario_id = $_SESSION['idUser'];
-
-      $query_insert = mysqli_query($conexion, "INSERT INTO producto(codigo, proveedor,descripcion,precio,existencia,usuario_id) values ('$codigo','$proveedor', '$producto', '$precio', '$cantidad','$usuario_id')");
+      $evaluador = $_POST['evaluador'];
+      $ano_periodo = $_POST['ano_periodo'];
+      $macroproceso = $_POST['macroproceso'];
+      $proceso = $_POST['proceso'];
+      $subproceso = $_POST['subproceso'];
+      $verificador = $_POST['verificador'];
+      $tecnico= $_POST['tecnico'];
+      $fuente= $_POST['fuente'];
+      $criterios= $_POST['criterios'];
+      $query_insert = mysqli_query($conexion, "INSERT INTO producto(evaluador,ano_periodo,macroproceso,proceso,subproceso,verificador,tecnico,fuente,criterios) values ('$evaluador','$ano_periodo', '$macroproceso', '$proceso', '$subproceso','$verificador','$tecnico','$fuente','$criterios')");
       if ($query_insert) {
         $alert = '<div class="alert alert-success" role="alert">
                 Producto Registrado
               </div>';
+        echo $alert;
       } else {
         $alert = '<div class="alert alert-danger" role="alert">
                 Error al registrar el producto
               </div>';
+        echo $alert;
       }
     }
   }
@@ -42,47 +47,47 @@
      <div class="col-lg-6 m-auto">
        <div class="card">
          <div class="card-header bg-primary">
-           Nuevo Producto
+           Nuevo Registro
          </div>
          <div class="card-body">
-           <form action="" method="post" autocomplete="off">
-             <?php echo isset($alert) ? $alert : ''; ?>
-             <div class="form-group">
-               <label for="codigo">Código de Barras</label>
-               <input type="text" placeholder="Ingrese código de barras" name="codigo" id="codigo" class="form-control">
-             </div>
-             <div class="form-group">
-               <label>Proveedor</label>
-               <?php
-                $query_proveedor = mysqli_query($conexion, "SELECT codproveedor, proveedor FROM proveedor ORDER BY proveedor ASC");
-                $resultado_proveedor = mysqli_num_rows($query_proveedor);
-                mysqli_close($conexion);
-                ?>
-
-               <select id="proveedor" name="proveedor" class="form-control">
-                 <?php
-                  if ($resultado_proveedor > 0) {
-                    while ($proveedor = mysqli_fetch_array($query_proveedor)) {
-                      // code...
-                  ?>
-                     <option value="<?php echo $proveedor['codproveedor']; ?>"><?php echo $proveedor['proveedor']; ?></option>
-                 <?php
-                    }
-                  }
-                  ?>
+           <form action="" method="post" autocomplete="off">                  
                </select>
              </div>
              <div class="form-group">
-               <label for="producto">Producto</label>
-               <input type="text" placeholder="Ingrese nombre del producto" name="producto" id="producto" class="form-control">
+               <label for="evaluador">EVALUADOR</label>
+               <input type="text" placeholder="Ingrese nombre del evaluador" name="evaluador" id="evaluador" class="form-control">
              </div>
              <div class="form-group">
-               <label for="precio">Precio</label>
-               <input type="text" placeholder="Ingrese precio" class="form-control" name="precio" id="precio">
+               <label for="ano_producto">ANO PERIODO</label>
+               <input type="text" placeholder="Ingrese el ano del periodo" class="form-control" name="ano_periodo" id="ano_periodo">
              </div>
              <div class="form-group">
-               <label for="cantidad">Cantidad</label>
-               <input type="number" placeholder="Ingrese cantidad" class="form-control" name="cantidad" id="cantidad">
+               <label for="macroproceso">MACROPROCESO NIVEL 0</label>
+               <input type="text" placeholder="Ingrese macroproceso" class="form-control" name="macroproceso" id="macroproceso">
+             </div>
+             <div class="form-group">
+               <label for="proceso">PROCESO NIVEL 1</label>
+               <input type="text" placeholder="Ingrese proceso" class="form-control" name="proceso" id="proceso">
+             </div>
+             <div class="form-group">
+               <label for="subproceso">SUBPROCESO NIVEL 2</label>
+               <input type="text" placeholder="Ingrese subproceso" class="form-control" name="subproceso" id="subproceso">
+             </div>
+             <div class="form-group">
+               <label for="verificador">VERIFICADOR</label>
+               <input type="text" placeholder="Ingrese codigo verificador" name="verificador" id="verificador" class="form-control">
+             </div>
+             <div class="form-group">
+               <label for="tecnico">TECNICOS EVALUATIVOS</label>
+               <input type="text" placeholder="Ingrese tecnico evaluativo" name="tecnico" id="tecnico" class="form-control">
+             </div>
+             <div class="form-group">
+               <label for="fuente">FUENTE REFERENCIAL</label>
+               <input type="text" placeholder="Ingrese fuente" name="fuente" id="fuente" class="form-control">
+             </div>
+             <div class="form-group">
+               <label for="criterios">CRITERIOS DE PUNTUACION</label>
+               <input type="text" placeholder="Ingrese criterios" name="criterios" id="criterios" class="form-control">
              </div>
              <input type="submit" value="Guardar Producto" class="btn btn-primary">
            </form>

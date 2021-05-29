@@ -16,9 +16,17 @@
 					<thead class="thead-dark">
 						<tr>
 							<th>ID</th>
-							<th>PRODUCTO</th>
-							<th>PRECIO</th>
-							<th>STOCK</th>
+							<th>EVALUADOR</th>
+							<th>ANO PERIODO</th>
+							<th>MACROPROCESO <br> NIVEL0</th>
+							<th>PROCESO <br> NIVEL1</th>
+							<th>SUBPROCESO <br> NIVEL2</th>
+							<th>VERIFICADOR</th>
+							<th>TECNICOS EVALUATIVOS</th>
+							<th>FUENTE REFERENCIAL</th>
+							<th>CRITERIOS DE PUNTUACION</th>
+							<th>PUNTUACION</th>
+							<th>OBSERVACIONES</th>
 							<?php if ($_SESSION['rol'] == 1) { ?>
 							<th>ACCIONES</th>
 							<?php } ?>
@@ -34,9 +42,15 @@
 							while ($data = mysqli_fetch_assoc($query)) { ?>
 								<tr>
 									<td><?php echo $data['codproducto']; ?></td>
-									<td><?php echo $data['descripcion']; ?></td>
-									<td><?php echo $data['precio']; ?></td>
-									<td><?php echo $data['existencia']; ?></td>
+									<td><?php echo $data['evaluador']; ?></td>
+									<td><?php echo $data['ano_periodo']; ?></td>
+									<td><?php echo $data['macroproceso']; ?></td>
+									<td><?php echo $data['proceso']; ?></td>
+									<td><?php echo $data['subproceso']; ?></td>
+									<td><?php echo $data['verificador']; ?></td>
+									<td><?php echo $data['tecnico']; ?></td>
+									<td><?php echo $data['fuente']; ?></td>
+									<td><?php echo $data['criterios']; ?></td>
 										<?php if ($_SESSION['rol'] == 1) { ?>
 									<td>
 										<a href="agregar_producto.php?id=<?php echo $data['codproducto']; ?>" class="btn btn-primary"><i class='fas fa-audio-description'></i></a>
