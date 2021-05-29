@@ -3,7 +3,7 @@ include "includes/header.php";
 include "../conexion.php";
 if (!empty($_POST)) {
   $alert = "";
-  if (empty($_POST['proveedor']) || empty($_POST['contacto']) || empty($_POST['telefono']) || empty($_POST['direccion'])) {
+  if (empty($_POST['proveedor']) || empty($_POST['contacto']) || empty($_POST['telefono']) || empty($_POST['direccion']) || empty($_POST['modalidad']) || empty($_POST['intervencion']) || empty($_POST['avance']) || empty($_POST['estado'])) {
     $alert = '<div class="alert alert-danger" role="alert">Todo los campos son requeridos</div>';
   } else {
     $idproveedor = $_GET['id'];
@@ -11,8 +11,12 @@ if (!empty($_POST)) {
     $contacto = $_POST['contacto'];
     $telefono = $_POST['telefono'];
     $direccion = $_POST['direccion'];
+    $modalidad  = $_POST['modalidad'];
+    $intervencion = $_POST['intervencion'];
+    $avance = $_POST['avance'];
+    $estado = $_POST['estado'];
 
-    $sql_update = mysqli_query($conexion, "UPDATE proveedor SET proveedor = '$proveedor', contacto = '$contacto' , telefono = $telefono, direccion = '$direccion' WHERE codproveedor = $idproveedor");
+    $sql_update = mysqli_query($conexion, "UPDATE proveedor SET proveedor = '$proveedor', contacto = '$contacto' , telefono = $telefono, direccion = '$direccion' , modalidad = '$modalidad', intervencion = '$intervencion', avance = '$avance', estado = '$estado' WHERE codproveedor = $idproveedor");
 
     if ($sql_update) {
       $alert = '<div class="alert alert-success" role="alert">Proveedor Actualizado correctamente</div>';
@@ -55,7 +59,7 @@ if ($result_sql == 0) {
 
       <div class="card">
         <div class="card-header bg-primary">
-          Modificar Proveedor
+          <b style="color:white;">Modificar Supervisión</b>
         </div>
         <div class="card-body">
           <?php echo isset($alert) ? $alert : ''; ?>
@@ -76,6 +80,22 @@ if ($result_sql == 0) {
             <div class="form-group">
               <label for="direccion">Dirección</label>
               <input type="text" placeholder="Ingrese Direccion" name="direccion" class="form-control" id="direccion" value="<?php echo $direccion; ?>">
+            </div>
+            <div class="form-group">
+              <label for="direccion">Modalidad</label>
+              <input type="text" placeholder="Ingrese Direccion" name="modalidad" class="form-control" id="direccion" value="<?php echo $direccion; ?>">
+            </div>
+            <div class="form-group">
+              <label for="direccion">intervención</label>
+              <input type="text" placeholder="Ingrese Direccion" name="intervencion" class="form-control" id="direccion" value="<?php echo $direccion; ?>">
+            </div>
+            <div class="form-group">
+              <label for="direccion">Avance</label>
+              <input type="text" placeholder="Ingrese Direccion" name="avance" class="form-control" id="direccion" value="<?php echo $direccion; ?>">
+            </div>
+            <div class="form-group">
+              <label for="direccion">Estado</label>
+              <input type="text" placeholder="Ingrese Direccion" name="estado" class="form-control" id="direccion" value="<?php echo $direccion; ?>">
             </div>
 
             <input type="submit" value="Editar Proveedor" class="btn btn-primary">
