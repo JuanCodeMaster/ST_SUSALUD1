@@ -7,7 +7,7 @@
 	<!-- Page Heading -->
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<h1 class="h3 mb-0 text-gray-800">Registro de supervisión</h1>
-		<a href="registro_proveedor.php" class="btn btn-primary">Nuevo</a>
+		<a href="registro_cliente.php" class="btn btn-primary">Nuevo</a>
 
 		<nav class="navbar navbar-light bg-light">
 			<form class="form-inline">
@@ -51,10 +51,10 @@
 									<td><?php echo $data['proveedor']; ?></td>
 									<td><?php echo $data['telefono']; ?></td>
 									<td><?php echo $data['direccion']; ?></td>
-									<td><?php echo $data['direccion']; ?></td>
-									<td><?php echo $data['direccion']; ?></td>
-									<td><?php echo $data['direccion']; ?></td>
-									<td><?php echo $data['direccion']; ?></td>
+									<td><?php echo $data['modalidad']; ?></td>
+									<td><?php echo $data['intervencion']; ?></td>
+									<td><?php echo $data['avance']; ?></td>
+									<td><?php echo $data['estado']; ?></td>
 									<?php if ($_SESSION['rol'] == 1) { ?>
 									<td>
 										<a href="editar_proveedor.php?id=<?php echo $data['codproveedor']; ?>" class="btn btn-success"><i class='fas fa-edit'></i> Editar</a>
