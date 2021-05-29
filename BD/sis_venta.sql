@@ -274,13 +274,23 @@ INSERT INTO `producto` (`codproducto`, `codigo`, `descripcion`, `proveedor`, `pr
 --
 
 CREATE TABLE `proveedor` (
-  `codproveedor` int(11) NOT NULL,
-  `proveedor` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `contacto` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `telefono` int(11) NOT NULL,
-  `direccion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `usuario_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+	`codproveedor` INT(10) NOT NULL AUTO_INCREMENT,
+	`proveedor` VARCHAR(100) NOT NULL COLLATE 'utf8_spanish_ci',
+	`contacto` VARCHAR(100) NOT NULL COLLATE 'utf8_spanish_ci',
+	`telefono` VARCHAR(100) NOT NULL DEFAULT '' COLLATE 'utf8_spanish_ci',
+	`direccion` VARCHAR(100) NOT NULL COLLATE 'utf8_spanish_ci',
+	`usuario_id` INT(10) NOT NULL,
+	`modalidad` VARCHAR(100) NOT NULL COLLATE 'utf8_spanish_ci',
+	`intervencion` VARCHAR(100) NOT NULL COLLATE 'utf8_spanish_ci',
+	`avance` VARCHAR(100) NOT NULL COLLATE 'utf8_spanish_ci',
+	`estado` VARCHAR(100) NOT NULL COLLATE 'utf8_spanish_ci',
+	PRIMARY KEY (`codproveedor`) USING BTREE
+)
+COLLATE='utf8_spanish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=6
+;
+
 
 --
 -- Volcado de datos para la tabla `proveedor`
