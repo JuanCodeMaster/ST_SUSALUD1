@@ -7,15 +7,15 @@ if (!empty($_POST)) {
                                     Todo los campos son obligatorio
                                 </div>';
     } else {
-        $dni = $_POST['dni'];
-        $nombre = $_POST['nombre'];
-        $telefono = $_POST['telefono'];
-        $direccion = $_POST['direccion'];
-        $usuario_id = $_SESSION['idUser'];
+        $id = $_POST['id'];
+        $año = $_POST['año'];
+        $etapa_del_año = $_POST['etapa_del_año'];
+        $avance = $_POST['avance'];
+        $estado = $_SESSION['estado'];
 
         $result = 0;
-        if (is_numeric($dni) and $dni != 0) {
-            $query = mysqli_query($conexion, "SELECT * FROM cliente where dni = '$dni'");
+        if (is_numeric($id) and $id != 0) {
+            $query = mysqli_query($conexion, "SELECT * FROM cliente where id = '$id'");
             $result = mysqli_fetch_array($query);
         }
         if ($result > 0) {
@@ -23,10 +23,10 @@ if (!empty($_POST)) {
                                     El dni ya existe
                                 </div>';
         } else {
-            $query_insert = mysqli_query($conexion, "INSERT INTO cliente(dni,nombre,telefono,direccion, usuario_id) values ('$dni', '$nombre', '$telefono', '$direccion', '$usuario_id')");
+            $query_insert = mysqli_query($conexion, "INSERT INTO cliente(id,año,etapa_del_año,avance,estado) values ('$id', '$año', '$etapa_del_año', '$avance', '$estado')");
             if ($query_insert) {
                 $alert = '<div class="alert alert-primary" role="alert">
-                                    Cliente Registrado
+                                    Autoevaluación Registrada
                                 </div>';
             } else {
                 $alert = '<div class="alert alert-danger" role="alert">
@@ -53,26 +53,26 @@ if (!empty($_POST)) {
         <div class="col-lg-6 m-auto">
             <div class="card">
                 <div class="card-header bg-primary">
-                    Nuevo Cliente
+                    Nueva Autoevaluación
                 </div>
                 <div class="card-body">
                     <form action="" method="post" autocomplete="off">
                         <?php echo isset($alert) ? $alert : ''; ?>
                         <div class="form-group">
-                            <label for="dni">Dni</label>
-                            <input type="number" placeholder="Ingrese dni" name="dni" id="dni" class="form-control">
+                            <label for="dni">año</label>
+                            <input type="number" placeholder="Ingrese el año" name="dni" id="dni" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" placeholder="Ingrese Nombre" name="nombre" id="nombre" class="form-control">
+                            <label for="nombre">etapa_del_año</label>
+                            <input type="text" placeholder="Ingrese etapa del año" name="nombre" id="nombre" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="number" placeholder="Ingrese Teléfono" name="telefono" id="telefono" class="form-control">
+                            <label for="telefono">avance</label>
+                            <input type="number" placeholder="Ingrese avance" name="telefono" id="telefono" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="direccion">Dirección</label>
-                            <input type="text" placeholder="Ingrese Direccion" name="direccion" id="direccion" class="form-control">
+                            <label for="direccion">estado</label>
+                            <input type="text" placeholder="Ingrese estado" name="direccion" id="direccion" class="form-control">
                         </div>
                         <input type="submit" value="Guardar Cliente" class="btn btn-primary">
                     </form>

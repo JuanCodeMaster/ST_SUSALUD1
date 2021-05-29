@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="form-group">
-                <h4 class="text-center">Datos del Cliente</h4>
+                <h4 class="text-center">Datos del Autoevaluación</h4>
                 <a href="#" class="btn btn-primary btn_new_cliente"><i class="fas fa-user-plus"></i> Nuevo Cliente</a>
             </div>
             <div class="card">
@@ -14,25 +14,25 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label>Dni</label>
+                                    <label>año</label>
                                     <input type="number" name="dni_cliente" id="dni_cliente" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label>Nombre</label>
+                                    <label>Etapa del año</label>
                                     <input type="text" name="nom_cliente" id="nom_cliente" class="form-control" disabled required>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label>Teléfono</label>
+                                    <label>Avance</label>
                                     <input type="number" name="tel_cliente" id="tel_cliente" class="form-control" disabled required>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label>Dirreción</label>
+                                    <label>Estado</label>
                                     <input type="text" name="dir_cliente" id="dir_cliente" class="form-control" disabled required>
                                 </div>
 
@@ -64,13 +64,13 @@
                 <table class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th width="100px">Código</th>
+                            <th width="100px">ID</th>
                             <th>Des.</th>
                             <th>Stock</th>
-                            <th width="100px">Cantidad</th>
-                            <th class="textright">Precio</th>
-                            <th class="textright">Precio Total</th>
-                            <th>Acciones</th>
+                            <th width="100px">Año</th>
+                            <th class="textright">Etapa del año</th>
+                            <th class="textright">Avance</th>
+                            <th>Estado</th>
                         </tr>
                         <tr>
                             <td><input type="hidden" name="txt_cod_producto" id="txt_cod_producto">
