@@ -75,8 +75,8 @@ if ($result_data > 0) {
 			<div class="container-fluid d-flex align-items-center justify-content-between">
 				<div class="navbar-header">
 					<!-- Navbar Header--><a href="index.php" class="navbar-brand">
-						<div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Punto</strong><strong>Venta</strong></div>
-						<div class="brand-text brand-sm"><strong class="text-primary">P</strong><strong>V</strong></div>
+						<div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">SU-</strong><strong>SALUD</strong></div>
+						<div class="brand-text brand-sm"><strong class="text-primary">S</strong><strong>S</strong></div>
 					</a>
 					<!-- Sidebar Toggle Btn-->
 					<button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
@@ -108,31 +108,18 @@ if ($result_data > 0) {
 				<!-- Divider -->
 
 				<!-- Nav Item - Pages Collapse Menu -->
-				<li class="nav-item">
-					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-						<i class="fas fa-fw fa-cog"></i>
-						<span>Ventas</span>
-						<i class="fas fa-angle-down fa-lg float-right"></i>
-					</a>
-					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="nueva_venta.php">Nueva venta</a>
-							<a class="collapse-item" href="ventas.php">Ventas</a>
-						</div>
-					</div>
-				</li>
 
 				<!-- Nav Item - Productos Collapse Menu -->
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
 						<i class="fas fa-fw fa-wrench"></i>
-						<span>Productos</span>
+						<span>Autoevaluacion</span>
 						<i class="fas fa-angle-down fa-lg float-right"></i>
 					</a>
 					<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="registro_producto.php">Nuevo Producto</a>
-							<a class="collapse-item" href="lista_productos.php">Productos</a>
+							<a class="collapse-item" href="registro_producto.php">Nueva Autoevaluacion</a>
+							<a class="collapse-item" href="lista_productos.php">Autoevaluaciones</a>
 						</div>
 					</div>
 				</li>

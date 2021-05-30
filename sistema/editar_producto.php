@@ -3,20 +3,27 @@ include_once "includes/header.php";
 include "../conexion.php";
 if (!empty($_POST)) {
   $alert = "";
-  if (empty($_POST['codigo']) || empty($_POST['producto']) || empty($_POST['precio'])) {
+  if (empty($_POST['evaluador']) || empty($_POST['ano']) || empty($_POST['macroproceso']) || empty($_POST['proceso']) || empty($_POST['sub']) || empty($_POST['verificador']) || empty($_POST['tecnico']) || empty($_POST['fuente']) || empty($_POST['criterios'])) {
     $alert = '<div class="alert alert-primary" role="alert">
               Todo los campos son requeridos
             </div>';
   } else {
-    $codproducto = $_GET['id'];
-    $proveedor = $_POST['proveedor'];
-    $codigo = $_POST['codigo'];
-    $producto = $_POST['producto'];
-    $precio = $_POST['precio'];
-    $query_update = mysqli_query($conexion, "UPDATE producto SET codigo = '$codigo', descripcion = '$producto', proveedor= $proveedor,precio= $precio WHERE codproducto = $codproducto");
+    $codproducto = $_REQUEST['id'];
+    $evaluador = $_POST['evaluador'];
+    $ano= $_POST['ano'];
+    $macroproceso = $_POST['macroproceso'];
+    $proceso = $_POST['proceso'];
+    $sub = $_POST['sub'];
+    $verificador  = $_POST['verificador'];
+    $tecnico = $_POST['tecnico'];
+    $fuente = $_POST['fuente'];
+    $criterios = $_POST['criterios'];
+    
+    $query_update = mysqli_query($conexion, "UPDATE producto SET evaluador = '$evaluador', ano_periodo = '$ano', macroproceso = '$macroproceso', proceso = '$proceso', subproceso = '$sub', verificador = '$verificador', tecnico = '$tecnico', fuente = '$fuente', criterios = '$criterios' WHERE codproducto = $codproducto");
+    
     if ($query_update) {
       $alert = '<div class="alert alert-primary" role="alert">
-              Producto Modificado
+              Autoevaluacion Modificada
             </div>';
     } else {
       $alert = '<div class="alert alert-primary" role="alert">
@@ -35,9 +42,9 @@ if (empty($_REQUEST['id'])) {
   if (!is_numeric($id_producto)) {
     header("Location: lista_productos.php");
   }
-  $query_producto = mysqli_query($conexion, "SELECT p.codproducto, p.codigo, p.descripcion, p.precio, pr.codproveedor, pr.proveedor FROM producto p INNER JOIN proveedor pr ON p.proveedor = pr.codproveedor WHERE p.codproducto = $id_producto");
-  $result_producto = mysqli_num_rows($query_producto);
+  $query_producto = mysqli_query($conexion, "SELECT evaluador, ano_periodo, macroproceso, proceso, subproceso, verificador, tecnico, fuente, criterios FROM sis_venta.producto where codproducto = $id_producto");
 
+  $result_producto = mysqli_num_rows($query_producto);
   if ($result_producto > 0) {
     $data_producto = mysqli_fetch_assoc($query_producto);
   } else {
@@ -53,43 +60,50 @@ if (empty($_REQUEST['id'])) {
 
       <div class="card">
         <div class="card-header bg-primary text-white">
-          Modificar producto
+          Modificar Autoevaluacion
         </div>
         <div class="card-body">
           <form action="" method="post">
             <?php echo isset($alert) ? $alert : ''; ?>
             <div class="form-group">
-              <label for="codigo">Código de Barras</label>
-              <input type="text" placeholder="Ingrese código de barras" name="codigo" id="codigo" class="form-control" value="<?php echo $data_producto['codigo']; ?>">
+              <label for="codigo">Evaluador</label>
+              <input type="text" placeholder="Ingrese código de barras" name="evaluador" id="codigo" class="form-control" value="<?php   echo $data_producto['evaluador'];?>">
             </div>
-            <div class="form-group">
-              <label for="nombre">Proveedor</label>
-              <?php $query_proveedor = mysqli_query($conexion, "SELECT * FROM proveedor ORDER BY proveedor ASC");
-              $resultado_proveedor = mysqli_num_rows($query_proveedor);
-              mysqli_close($conexion);
-              ?>
-              <select id="proveedor" name="proveedor" class="form-control">
-                <option value="<?php echo $data_producto['codproveedor']; ?>" selected><?php echo $data_producto['proveedor']; ?></option>
-                <?php
-                if ($resultado_proveedor > 0) {
-                  while ($proveedor = mysqli_fetch_array($query_proveedor)) {
-                    // code...
-                ?>
-                    <option value="<?php echo $proveedor['codproveedor']; ?>"><?php echo $proveedor['proveedor']; ?></option>
-                <?php
-                  }
-                }
-                ?>
-              </select>
+             <div class="form-group">
+              <label for="codigo">Año Periodo</label>
+              <input type="text" placeholder="Ingrese código de barras" name="ano" id="codigo" class="form-control" value="<?php   echo $data_producto['ano_periodo'];?>">
             </div>
+             <div class="form-group">
+              <label for="codigo">Macro Proceso</label>
+              <input type="text" placeholder="Ingrese código de barras" name="macroproceso" id="codigo" class="form-control" value="<?php   echo $data_producto['macroproceso'];?>">
+            </div>
+             <div class="form-group">
+              <label for="codigo">Proceso</label>
+              <input type="text" placeholder="Ingrese código de barras" name="proceso" id="codigo" class="form-control" value="<?php   echo $data_producto['proceso'];?>">
+            </div>
+             <div class="form-group">
+              <label for="codigo">Sub Proceso</label>
+              <input type="text" placeholder="Ingrese código de barras" name="sub" id="codigo" class="form-control" value="<?php   echo $data_producto['subproceso'];?>">
+            </div>
+             <div class="form-group">
+              <label for="codigo">Verificador</label>
+              <input type="text" placeholder="Ingrese código de barras" name="verificador" id="codigo" class="form-control" value="<?php   echo $data_producto['verificador'];?>">
+            </div>
+
             <div class="form-group">
-              <label for="producto">Producto</label>
-              <input type="text" class="form-control" placeholder="Ingrese nombre del producto" name="producto" id="producto" value="<?php echo $data_producto['descripcion']; ?>">
+              <label for="producto">Tecnico</label>
+              <input type="text" class="form-control" placeholder="Ingrese nombre del producto" name="tecnico" id="producto" value="<?php   echo $data_producto['tecnico'];?>">
+
+            </div>
+           
+            <div class="form-group">
+              <label for="producto">Fuente</label>
+              <input type="text" class="form-control" placeholder="Ingrese nombre del producto" name="fuente" id="producto" value="<?php   echo $data_producto['fuente'];?>">
 
             </div>
             <div class="form-group">
-              <label for="precio">Precio</label>
-              <input type="text" placeholder="Ingrese precio" class="form-control" name="precio" id="precio" value="<?php echo $data_producto['precio']; ?>">
+              <label for="precio">Criterios</label>
+              <input type="text" placeholder="Ingrese precio" class="form-control" name="criterios" id="precio" value="<?php   echo $data_producto['criterios'];?>">
 
             </div>
             <input type="submit" value="Actualizar Producto" class="btn btn-primary">

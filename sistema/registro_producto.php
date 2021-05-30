@@ -20,12 +20,12 @@
       $query_insert = mysqli_query($conexion, "INSERT INTO producto(evaluador,ano_periodo,macroproceso,proceso,subproceso,verificador,tecnico,fuente,criterios) values ('$evaluador','$ano_periodo', '$macroproceso', '$proceso', '$subproceso','$verificador','$tecnico','$fuente','$criterios')");
       if ($query_insert) {
         $alert = '<div class="alert alert-success" role="alert">
-                Producto Registrado
+                 Registro Exitoso
               </div>';
         echo $alert;
       } else {
         $alert = '<div class="alert alert-danger" role="alert">
-                Error al registrar el producto
+                Error al registrar
               </div>';
         echo $alert;
       }

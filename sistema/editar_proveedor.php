@@ -38,16 +38,11 @@ $idproveedor = $_REQUEST['id'];
 $sql = mysqli_query($conexion, "SELECT * FROM proveedor WHERE codproveedor = $idproveedor");
 mysqli_close($conexion);
 $result_sql = mysqli_num_rows($sql);
-if ($result_sql == 0) {
+if ($result_sql > 0) {
+  $j = mysqli_fetch_assoc($sql);
+}else{
   header("Location: lista_proveedor.php");
-} else {
-  while ($data = mysqli_fetch_array($sql)) {
-    $idproveedor = $data['codproveedor'];
-    $proveedor = $data['proveedor'];
-    $contacto = $data['contacto'];
-    $telefono = $data['telefono'];
-    $direccion = $data['direccion'];
-  }
+
 }
 ?>
 
@@ -66,36 +61,36 @@ if ($result_sql == 0) {
           <form class="" action="" method="post">
             <input type="hidden" name="id" value="<?php echo $idproveedor; ?>">
             <div class="form-group">
-              <label for="proveedor">Proveedor</label>
-              <input type="text" placeholder="Ingrese proveedor" name="proveedor" class="form-control" id="proveedor" value="<?php echo $proveedor; ?>">
+              <label for="proveedor">Periodo</label>
+              <input type="text" placeholder="Ingrese proveedor" name="proveedor" class="form-control" id="proveedor" value="<?php echo $j["proveedor"]; ?>">
             </div>
             <div class="form-group">
-              <label for="nombre">Contacto</label>
-              <input type="text" placeholder="Ingrese contacto" name="contacto" class="form-control" id="contacto" value="<?php echo $contacto; ?>">
+              <label for="nombre">Año</label>
+              <input type="text" placeholder="Ingrese contacto" name="contacto" class="form-control" id="contacto" value="<?php echo $j["contacto"]; ?>">
             </div>
             <div class="form-group">
-              <label for="telefono">Teléfono</label>
-              <input type="number" placeholder="Ingrese Teléfono" name="telefono" class="form-control" id="telefono" value="<?php echo $telefono; ?>">
+              <label for="telefono">Entidad</label>
+              <input type="text" placeholder="Ingrese Teléfono" name="telefono" class="form-control" id="telefono" value="<?php echo $j["telefono"]; ?>">
             </div>
             <div class="form-group">
-              <label for="direccion">Dirección</label>
-              <input type="text" placeholder="Ingrese Direccion" name="direccion" class="form-control" id="direccion" value="<?php echo $direccion; ?>">
+              <label for="direccion">Tipo de Supervicion</label>
+              <input type="text" placeholder="Ingrese Direccion" name="direccion" class="form-control" id="direccion" value="<?php echo $j["direccion"]; ?>">
             </div>
             <div class="form-group">
               <label for="direccion">Modalidad</label>
-              <input type="text" placeholder="Ingrese Direccion" name="modalidad" class="form-control" id="direccion" value="<?php echo $direccion; ?>">
+              <input type="text" placeholder="Ingrese Direccion" name="modalidad" class="form-control" id="direccion" value="<?php echo $j["modalidad"]; ?>">
             </div>
             <div class="form-group">
-              <label for="direccion">intervención</label>
-              <input type="text" placeholder="Ingrese Direccion" name="intervencion" class="form-control" id="direccion" value="<?php echo $direccion; ?>">
+              <label for="direccion">Tipo de Intervención</label>
+              <input type="text" placeholder="Ingrese Direccion" name="intervencion" class="form-control" id="direccion" value="<?php echo $j["intervencion"]; ?>">
             </div>
             <div class="form-group">
               <label for="direccion">Avance</label>
-              <input type="text" placeholder="Ingrese Direccion" name="avance" class="form-control" id="direccion" value="<?php echo $direccion; ?>">
+              <input type="text" placeholder="Ingrese Direccion" name="avance" class="form-control" id="direccion" value="<?php echo $j["avance"]; ?>">
             </div>
             <div class="form-group">
               <label for="direccion">Estado</label>
-              <input type="text" placeholder="Ingrese Direccion" name="estado" class="form-control" id="direccion" value="<?php echo $direccion; ?>">
+              <input type="text" placeholder="Ingrese Direccion" name="estado" class="form-control" id="direccion" value="<?php echo $j["estado"]; ?>">
             </div>
 
             <input type="submit" value="Editar Proveedor" class="btn btn-primary">
