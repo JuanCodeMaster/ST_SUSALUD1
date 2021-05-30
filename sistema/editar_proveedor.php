@@ -16,7 +16,7 @@ if (!empty($_POST)) {
     $avance = $_POST['avance'];
     $estado = $_POST['estado'];
 
-    $sql_update = mysqli_query($conexion, "UPDATE proveedor SET proveedor = '$proveedor', contacto = '$contacto' , telefono = $telefono, direccion = '$direccion' , modalidad = '$modalidad', intervencion = '$intervencion', avance = '$avance', estado = '$estado' WHERE codproveedor = $idproveedor");
+    $sql_update = mysqli_query($conexion, "UPDATE proveedor SET proveedor = '$proveedor', contacto = '$contacto' , telefono = '$telefono', direccion = '$direccion' , modalidad = '$modalidad', intervencion = '$intervencion', avance = '$avance', estado = '$estado' WHERE codproveedor = $idproveedor");
 
     if ($sql_update) {
       $alert = '<div class="alert alert-success" role="alert">Proveedor Actualizado correctamente</div>';
